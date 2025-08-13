@@ -1,0 +1,64 @@
+{
+    "name": "gridwb/laravel-mem0",
+    "description": "Mem0 API for Laravel",
+    "keywords": [
+        "gridwb",
+        "laravel",
+        "laravel-mem0"
+    ],
+    "homepage": "https://github.com/gridwb/laravel-mem0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "gridwb",
+            "email": "gridfromwb@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "guzzlehttp/guzzle": "^7.9.0",
+        "spatie/laravel-data": "^4.14",
+        "spatie/laravel-package-tools": "^1.16",
+        "illuminate/contracts": "^10.0||^11.0||^12.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.14",
+        "orchestra/testbench": "^8.22|^9.0|^10.0",
+        "pestphp/pest": "^2.0|^3.0",
+        "pestphp/pest-plugin-laravel": "^2.0|^3.0",
+        "larastan/larastan": "^2.9|^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gridwb\\LaravelMem0\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Gridwb\\LaravelMem0\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@composer run prepare",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Gridwb\\LaravelMem0\\LaravelMem0ServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
