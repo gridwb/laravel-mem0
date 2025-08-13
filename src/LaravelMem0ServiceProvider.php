@@ -16,7 +16,7 @@ class LaravelMem0ServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('laravel-mem0')
-            ->hasConfigFile('mem0');
+            ->hasConfigFile();
     }
 
     public function packageRegistered(): void
