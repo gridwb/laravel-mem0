@@ -1,24 +1,24 @@
 ## Overview
+
 Laravel Mem0 is a convenient wrapper for interacting with the Mem0 API in Laravel applications.
 
 ## Installation
 
-You can install the package via composer:
+1. Install the package
+    ```bash
+    composer require gridwb/laravel-mem0
+    ```
 
-```bash
-composer require gridwb/laravel-mem0
-```
+2. Publish the configuration file
+    ```bash
+    php artisan vendor:publish --tag="mem0-config"
+    ```
 
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="laravel-mem0-config"
-```
-Next, make sure to add the required environment variables to your .env file:
-```bash
-MEM0_API_URL=https://api.mem0.ai
-MEM0_API_KEY=your-api-key-here
-```
+3. Add environment variables
+    ```bash
+    MEM0_API_URL=https://api.mem0.ai
+    MEM0_API_KEY=your-api-key-here
+    ```
 
 ## Usage
 
