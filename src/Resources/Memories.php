@@ -62,6 +62,7 @@ readonly class Memories implements MemoriesContract
     private function add(array $parameters): ResponseInterface
     {
         $parameters['output_format'] = 'v1.1';
+        $parameters['version'] = 'v2';
 
         return $this->apiClient->request(
             Request::METHOD_POST,
