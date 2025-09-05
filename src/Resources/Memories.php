@@ -10,7 +10,9 @@ use Gridwb\LaravelMem0\Resources\Concerns\Asyncable;
 use Gridwb\LaravelMem0\Responses\Memories\AddAsyncResponse;
 use Gridwb\LaravelMem0\Responses\Memories\AddSyncResponse;
 use Gridwb\LaravelMem0\Responses\Memories\SearchResponse;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 readonly class Memories implements MemoriesContract
@@ -25,13 +27,7 @@ readonly class Memories implements MemoriesContract
     {
         $parameters = $this->setAsyncParameter($parameters);
 
-        $response = $this->apiClient->request(
-            Request::METHOD_POST,
-            'v1/memories/',
-            [
-                RequestOptions::JSON => $parameters,
-            ]
-        );
+        $response = $this->add($parameters);
 
         return AddAsyncResponse::fromResponse($response);
     }
@@ -40,13 +36,7 @@ readonly class Memories implements MemoriesContract
     {
         $this->ensureNotAsync($parameters);
 
-        $response = $this->apiClient->request(
-            Request::METHOD_POST,
-            'v1/memories/',
-            [
-                RequestOptions::JSON => $parameters,
-            ]
-        );
+        $response = $this->add($parameters);
 
         return AddSyncResponse::fromResponse($response);
     }
@@ -62,5 +52,23 @@ readonly class Memories implements MemoriesContract
         );
 
         return SearchResponse::fromResponse($response);
+    }
+
+    /**
+     * @param  array<string, mixed>  $parameters
+     *
+     * @throws GuzzleException
+     */
+    private function add(array $parameters): ResponseInterface
+    {
+        $parameters['output_format'] = 'v1.1';
+
+        return $this->apiClient->request(
+            Request::METHOD_POST,
+            'v1/memories/',
+            [
+                RequestOptions::JSON => $parameters,
+            ]
+        );
     }
 }

@@ -25,38 +25,41 @@ Laravel Mem0 is a convenient wrapper for interacting with the Mem0 API in Larave
 ```php
 use Gridwb\LaravelMem0\Facades\Mem0;
 
-$memories = [
-    [
-        'role' => 'user',
-        'content' => '<user-message>'
-    ],
-    [
-        'role' => 'assistant',
-        'content' => '<assistant-message>'
+$data = [
+    'user_id'  => 'alex',
+    'messages' => [
+        [
+            'role'    => 'user',
+            'content' => '<user-message>'
+        ],
+        [
+            'role'    => 'assistant',
+            'content' => '<assistant-message>'
+        ]
     ]
 ];
 
-$result = Mem0::memories()->addAsync($memories);
-$result = Mem0::memories()->addSync($memories);
+$result = Mem0::memories()->addAsync($data);
+$result = Mem0::memories()->addSync($data);
 
-$query = 'What do you know about me?';
-$filters = [
-    'OR' => [
-        [
-            'user_id' => 'alex'
-        ],
-        [
-            'agent_id' => [
-                'in' => [
-                    'travel-assistant',
-                    'customer-support'
+$result = Mem0::memories()->search([
+    'query'   => 'What do you know about me?',
+    'filters' => [
+        'OR' => [
+            [
+                'user_id' => 'alex',
+            ],
+            [
+                'agent_id' => [
+                    'in' => [
+                        'travel-assistant',
+                        'customer-support'
+                    ]
                 ]
             ]
         ]
     ]
-]
-
-$result = Mem0::memories()->search($query, $filters);
+]);
 ```
 
 ## Testing
