@@ -22,28 +22,77 @@ Laravel Mem0 is a convenient wrapper for interacting with the Mem0 API in Larave
 
 ## Usage
 
+#### `add sync`
+
+Add memories via a synchronous request:
+
 ```php
+<?php
+
 use Gridwb\LaravelMem0\Facades\Mem0;
 
-$data = [
-    'user_id'  => 'alex',
+$response = Mem0::memories()->addSync([
+    'user_id' => 'alex',
     'messages' => [
         [
-            'role'    => 'user',
-            'content' => '<user-message>'
+            'role' => 'user',
+            'content' => '<user-message>',
         ],
         [
-            'role'    => 'assistant',
-            'content' => '<assistant-message>'
-        ]
-    ]
-];
+            'role' => 'assistant',
+            'content' => '<assistant-message>',
+        ],
+    ],
+]);
 
-$result = Mem0::memories()->addAsync($data);
-$result = Mem0::memories()->addSync($data);
+foreach ($response->memories as $memory) {
+    echo $memory->id;
+    echo $memory->memory;
+    echo $memory->event->value;
+}
+```
 
-$result = Mem0::memories()->search([
-    'query'   => 'What do you know about me?',
+#### `add async`
+
+Add memories via an asynchronous request:
+
+```php
+<?php
+
+use Gridwb\LaravelMem0\Facades\Mem0;
+
+$response = Mem0::memories()->addAsync([
+    'user_id' => 'alex',
+    'messages' => [
+        [
+            'role' => 'user',
+            'content' => '<user-message>',
+        ],
+        [
+            'role' => 'assistant',
+            'content' => '<assistant-message>',
+        ],
+    ],
+]);
+
+foreach ($response->memories as $memory) {
+    echo $memory->message;
+    echo $memory->status->value;
+    echo $memory->eventId;
+}
+```
+
+#### `search`
+
+Search memories request:
+
+```php
+<?php
+
+use Gridwb\LaravelMem0\Facades\Mem0;
+
+$response = Mem0::memories()->search([
+    'query' => 'What do you know about me?',
     'filters' => [
         'OR' => [
             [
@@ -53,13 +102,20 @@ $result = Mem0::memories()->search([
                 'agent_id' => [
                     'in' => [
                         'travel-assistant',
-                        'customer-support'
-                    ]
-                ]
-            ]
-        ]
-    ]
+                        'customer-support',
+                    ],
+                ],
+            ],
+        ],
+    ],
 ]);
+
+foreach ($response->memories as $memory) {
+    echo $memory->id;
+    echo $memory->memory;
+    echo $memory->userId;
+    // ...
+}
 ```
 
 ## Testing
