@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-mem0` will be documented in this file.
 
+## 1.0.7 - 2025-11-15
+
+- updated usage section in readme
+
+## 1.0.6 - 2025-09-05
+
+- Added 'version' => 'v2' for memory add points
+
 ## 1.0.5 - 2025-09-05
 
 - Updated readme.md
