@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-mem0` will be documented in this file.
 
+## 1.1.0 - 2025-11-24
+
+- added compatibility with v1.0.1
+
 ## 1.0.7 - 2025-11-15
 
 - updated usage section in readme

@@ -2,6 +2,15 @@
 
 Laravel Mem0 is a convenient wrapper for interacting with the Mem0 API in Laravel applications.
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Memories Resource](#memories-resource)
+- [Testing](#testing)
+- [Changelog](#changelog)
+- [License](#license)
+
 ## Installation
 
 1. Install the package
@@ -15,12 +24,14 @@ Laravel Mem0 is a convenient wrapper for interacting with the Mem0 API in Larave
     ```
 
 3. Add environment variables
-    ```bash
+    ```env
     MEM0_API_URL=https://api.mem0.ai
     MEM0_API_KEY=your-api-key-here
     ```
 
 ## Usage
+
+### `Memories` Resource
 
 #### `add sync`
 

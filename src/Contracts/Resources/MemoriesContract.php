@@ -34,7 +34,7 @@ interface MemoriesContract
      *
      * @throws GuzzleException
      *
-     * @see https://docs.mem0.ai/api-reference/memory/v2-search-memories
+     * @see https://docs.mem0.ai/api-reference/memory/search-memories
      */
     public function search(array $parameters): SearchResponse;
 }
